@@ -1,15 +1,15 @@
 #!/bin/sh
-# Increase brightness by step of 5
-# Luca Rautti - lucarautti2@gmail.com
+# Decrease brightness by step of 5
+# Luca Rautti - lucarautti2@gmail.com#!/bin/sh
 
 path=/sys/class/backlight/radeon_bl0
-inc="5"
-max=`cat $path/max_brightness`
+dec="5"
+min="5"
 actual=`cat $path/actual_brightness`
-new=`echo $(($inc+$actual))`
+new=`echo $(($actual-$dec))`
 
-if [ "$new" = "$max" ]; then
-  echo 255 > $path/brightness
+if [ "$new" = "$min" ]; then
+  echo 5 > $path/brightness
 else
   echo $new > $path/brightness
 fi
